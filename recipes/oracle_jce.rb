@@ -46,8 +46,8 @@ if node['os'] == 'windows'
     checksum zip_checksum
     action :unzip
     not_if { ::File.exist? staging_local_policy }
-    notifies :create, "file[#{final_local_policy}]"
-    notifies :create, "file[#{final_export_policy}]"
+    notifies :create, "file[#{final_local_policy}]", :immediately
+    notifies :create, "file[#{final_export_policy}]", :immediately
   end
 
   file final_local_policy do
